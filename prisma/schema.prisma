@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model kegiatan {
+  id            Int      @id @default(autoincrement())
+  id_users      Int
+  nama_kegiatan String   @db.VarChar(100)
+  keterangan    String?  @db.Text
+  tercapai      Boolean  @default(false)
+  tanggal_input DateTime @db.Date
+  users         users    @relation(fields: [id_users], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "kegiatan_ibfk_1")
+
+  @@index([id_users], map: "id_users")
+}
+
+model users {
+  id       Int        @id @default(autoincrement())
+  nama     String     @db.VarChar(100)
+  email    String     @unique(map: "email") @db.VarChar(100)
+  token    String?    @db.Text
+  password String     @db.VarChar(100)
+  kegiatan kegiatan[]
+}

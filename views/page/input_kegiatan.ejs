@@ -1,0 +1,91 @@
+<div class="page-header">
+    <h1 class="page-title">Rencana kegiatan</h1>
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Form Input Kegiatan</li>
+        </ol>
+    </div>
+</div>
+<div class="row row-sm">
+    <div class="col-md-12 col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Input Kegiatan</h4>
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal" action="/form-kegiatan" method="post">
+                    <div class=" row mb-4">
+                        <label for="inputName" class="col-md-3 form-label">Nama Kegiatan</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="nama_kegiatan"
+                                placeholder="Masukan nama kegiatan hari ini" autocomplete="username">
+                        </div>
+                    </div>
+                    <div class=" row mb-4">
+                        <label for="inputName" class="col-md-3 form-label">Keterangan Kegiatan</label>
+                        <div class="col-md-9">
+                            <!-- <input type="text" class="form-control" name="keterangan"
+                                placeholder="Masukan nama kegiatan hari ini" autocomplete="keterangan"> -->
+                            <textarea class="form-control" name="keterangan"
+                                placeholder="Masukan keterangan kegiatan"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mb-0 mt-4 row justify-content-end">
+                        <div class="col-md-9">
+                            <button class="btn btn-primary">Kirim</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-xl-6">
+        <div class="card">
+            <div class="card-header border-bottom-0 custom-card-header">
+                <h6 class="main-content-label mb-0">Kegiatan Hari Ini
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="vtimeline">
+                    <% data.forEach(function(datas, i) { %>
+                        <div class="timeline-wrapper timeline-wrapper-secondary">
+                            <div class="avatar avatar-md timeline-badge">
+                                <span class="timeline-icon"><svg style="width:25px;height:25px" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M4,2A2,2 0 0,0 2,4V11C2,11.55 2.22,12.05 2.59,12.42L11.59,21.42C11.95,21.78 12.45,22 13,22C13.55,22 14.05,21.78 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.45 21.77,11.94 21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4V2M11,4L20,13L13,20L4,11V4H11V4H11M6.5,5A1.5,1.5 0 0,0 5,6.5A1.5,1.5 0 0,0 6.5,8A1.5,1.5 0 0,0 8,6.5A1.5,1.5 0 0,0 6.5,5M10.95,10.5C9.82,10.5 8.9,11.42 8.9,12.55C8.9,13.12 9.13,13.62 9.5,14L13,17.5L16.5,14C16.87,13.63 17.1,13.11 17.1,12.55A2.05,2.05 0 0,0 15.05,10.5C14.5,10.5 13.97,10.73 13.6,11.1L13,11.7L12.4,11.11C12.03,10.73 11.5,10.5 10.95,10.5Z" />
+                                    </svg></span>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h6 class="timeline-title">
+                                        <%= datas.nama_kegiatan %>
+                                    </h6>
+                                </div>
+                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                    <%= datas.keterangan %>
+                                </div>
+                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                    <span><i class="fe fe-calendar text-muted me-1"></i>
+                                        <%= moment(datas.tanggal_input).format('DD MMMM, YYYY') %>
+                                    </span>
+                                </div>
+                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                    <% if(datas.tercapai==0){ %>
+                                        <span class="badge bg-danger badge-sm  me-1 mb-1 mt-1">Belum Dikerjakan</span>
+                                        <%}else{ %>
+                                            <span class="badge bg-success badge-sm  me-1 mb-1 mt-1">Sudah
+                                                Dikerjakan</span>
+                                            <%} %>
+                                </div>
+                            </div>
+
+                        </div>
+                        <% }) %>
+                </div>
+                <a href="/tabel-kegiatan">Lihat Semua Kegiatan Hari Ini <i class="ion-chevron-right fs-10 ms-1"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
