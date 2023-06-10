@@ -1,98 +1,200 @@
 <div class="page-header">
-    <h1 class="page-title">Dashboard 01</h1>
+    <h1 class="page-title">Dashboar</h1>
     <div>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
         </ol>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+
+<div class="row row-sm">
+    <div class="col-md-6 col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Total Aktifitas</h4>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <div class="mt-2">
-                                <h6 class="">Total Users</h6>
-                                <h2 class="mb-0 number-font">44,278</h2>
-                            </div>
-                            <div class="ms-auto">
-                                <div class="chart-wrapper mt-1">
-                                    <canvas id="saleschart" class="h-8 w-9 chart-dropshadow"></canvas>
-                                </div>
+            <div class="col-sm-6 col-lg-6 col-md-12 col-xl-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card-img-absolute circle-icon bg-primary text-center align-self-center box-primary-shadow bradius">
+                                <img src="../assets/images/svgs/circle.svg" alt="img" class="card-img-absolute">
+                                <i class="lnr lnr-calendar-full fs-30  text-white mt-4"></i>
                             </div>
                         </div>
-                        <span class="text-muted fs-12"><span class="text-secondary"><i
-                                    class="fe fe-arrow-up-circle  text-secondary"></i>
-                                5%</span>
-                            Last week</span>
+                        <div class="col-8">
+                            <div class="card-body p-4">
+                                <h5 class="fw-normal mb-0">Kegiatan Hari Ini</h5>
+                                <h2 class="mb-2 fw-normal mt-2">
+                                    <%= totalKegiatanHarian %>
+                                </h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <div class="mt-2">
-                                <h6 class="">Total Profit</h6>
-                                <h2 class="mb-0 number-font">67,987</h2>
-                            </div>
-                            <div class="ms-auto">
-                                <div class="chart-wrapper mt-1">
-                                    <canvas id="leadschart" class="h-8 w-9 chart-dropshadow"></canvas>
-                                </div>
+            <div class="col-sm-6 col-lg-6 col-md-12 col-xl-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card-img-absolute circle-icon bg-secondary text-center align-self-center box-secondary-shadow bradius">
+                                <img src="../assets/images/svgs/circle.svg" alt="img" class="card-img-absolute">
+                                <i class="lnr lnr-user fs-30  text-white mt-4"></i>
                             </div>
                         </div>
-                        <span class="text-muted fs-12"><span class="text-pink"><i
-                                    class="fe fe-arrow-down-circle text-pink"></i>
-                                0.75%</span>
-                            Last 6 days</span>
+                        <div class="col-8">
+                            <div class="card-body p-4">
+
+                                <h5 class="fw-normal mb-0">Kegiatan Minggu Ini</h5>
+                                <h2 class="mb-2 fw-normal mt-2">
+                                    <%= totalKegiatanMingguan%>
+                                </h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <div class="mt-2">
-                                <h6 class="">Total Expenses</h6>
-                                <h2 class="mb-0 number-font">$76,965</h2>
-                            </div>
-                            <div class="ms-auto">
-                                <div class="chart-wrapper mt-1">
-                                    <canvas id="profitchart" class="h-8 w-9 chart-dropshadow"></canvas>
-                                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 col-md-12 col-xl-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card-img-absolute circle-icon bg-warning text-center align-self-center box-warning-shadow bradius">
+                                <img src="../assets/images/svgs/circle.svg" alt="img" class="card-img-absolute">
+                                <i class="lnr lnr-calendar-full fs-30  text-white mt-4"></i>
                             </div>
                         </div>
-                        <span class="text-muted fs-12"><span class="text-green"><i
-                                    class="fe fe-arrow-up-circle text-green"></i>
-                                0.9%</span>
-                            Last 9 days</span>
+                        <div class="col-8">
+                            <div class="card-body p-4">
+                                <h5 class="fw-normal mb-0">Kegiatan Bulan Ini</h5>
+                                <h2 class="mb-2 fw-normal mt-2">
+                                    <%= totalKegiatanBulanan %>
+                                </h2>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <div class="mt-2">
-                                <h6 class="">Total Cost</h6>
-                                <h2 class="mb-0 number-font">$59,765</h2>
-                            </div>
-                            <div class="ms-auto">
-                                <div class="chart-wrapper mt-1">
-                                    <canvas id="costchart" class="h-8 w-9 chart-dropshadow"></canvas>
-                                </div>
+            <div class="col-sm-6 col-lg-6 col-md-12 col-xl-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card-img-absolute circle-icon bg-info text-center align-self-center box-info-shadow bradius">
+                                <img src="../assets/images/svgs/circle.svg" alt="img" class="card-img-absolute">
+                                <i class="lnr lnr-user fs-30  text-white mt-4"></i>
                             </div>
                         </div>
-                        <span class="text-muted fs-12"><span class="text-warning"><i
-                                    class="fe fe-arrow-up-circle text-warning"></i>
-                                0.6%</span>
-                            Last year</span>
+                        <div class="col-8">
+                            <div class="card-body p-4">
+                                <h5 class="fw-normal mb-0">Total Seluruh Kegiatan</h5>
+                                <h2 class="mb-2 fw-normal mt-2">
+                                    <%= totalKeseluruhan %>
+                                </h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 col-md-12 col-xl-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card-img-absolute circle-icon bg-success text-center align-self-center box-success-shadow bradius">
+                                <img src="../assets/images/svgs/circle.svg" alt="img" class="card-img-absolute">
+                                <i class="lnr lnr-calendar-full fs-30  text-white mt-4"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body p-4">
+                                <h5 class="fw-normal mb-0">Sudah Dikerjakan</h5>
+                                <h2 class="mb-2 fw-normal mt-2">
+                                    <%= sudahDikerjakan %>
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-md-12 col-xl-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card-img-absolute circle-icon bg-danger text-center align-self-center box-danger-shadow bradius">
+                                <img src="../assets/images/svgs/circle.svg" alt="img" class="card-img-absolute">
+                                <i class="lnr lnr-user fs-30  text-white mt-4"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body p-4">
+                                <h5 class="fw-normal mb-0">Belum Dikerjakan</h5>
+                                <h2 class="mb-2 fw-normal mt-2">
+                                    <%= belumDikerjakan %>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-xl-6">
+        <div class="card">
+            <div class="card-header border-bottom-0 custom-card-header">
+                <h6 class="main-content-label mb-0">Kegiatan Hari Ini (<%= totalKegiatanHarian%>)
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="vtimeline">
+                    <% data.forEach(function(datas, i) { %>
+                        <div class="timeline-wrapper timeline-wrapper-secondary">
+                            <div class="avatar avatar-md timeline-badge">
+                                <span class="timeline-icon"><svg style="width:25px;height:25px" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M4,2A2,2 0 0,0 2,4V11C2,11.55 2.22,12.05 2.59,12.42L11.59,21.42C11.95,21.78 12.45,22 13,22C13.55,22 14.05,21.78 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.45 21.77,11.94 21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4V2M11,4L20,13L13,20L4,11V4H11V4H11M6.5,5A1.5,1.5 0 0,0 5,6.5A1.5,1.5 0 0,0 6.5,8A1.5,1.5 0 0,0 8,6.5A1.5,1.5 0 0,0 6.5,5M10.95,10.5C9.82,10.5 8.9,11.42 8.9,12.55C8.9,13.12 9.13,13.62 9.5,14L13,17.5L16.5,14C16.87,13.63 17.1,13.11 17.1,12.55A2.05,2.05 0 0,0 15.05,10.5C14.5,10.5 13.97,10.73 13.6,11.1L13,11.7L12.4,11.11C12.03,10.73 11.5,10.5 10.95,10.5Z" />
+                                    </svg></span>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h6 class="timeline-title">
+                                        <%= datas.nama_kegiatan %>
+                                    </h6>
+                                </div>
+                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                    <%= datas.keterangan %>
+                                </div>
+                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                    <span><i class="fe fe-calendar text-muted me-1"></i>
+                                        <%= moment(datas.tanggal_input).format('DD MMMM, YYYY') %>
+                                    </span>
+                                </div>
+                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                    <% if(datas.tercapai==0){ %>
+                                        <span class="badge bg-danger badge-sm  me-1 mb-1 mt-1">Belum Dikerjakan</span>
+                                        <%}else{ %>
+                                            <span class="badge bg-success badge-sm  me-1 mb-1 mt-1">Sudah
+                                                Dikerjakan</span>
+                                            <%} %>
+                                </div>
+                            </div>
+
+                        </div>
+                        <% }) %>
+                </div>
+                <a href="/tabel-kegiatan">Lihat Semua Kegiatan Hari Ini <i class="ion-chevron-right fs-10 ms-1"></i></a>
             </div>
         </div>
     </div>

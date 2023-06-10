@@ -2,11 +2,52 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const { getProfile, getDateFormatYYMMDD } = require('../../utils/utils')
 const moment = require('moment')
+
 exports.Index = async (req, res) => {
     try {
+        const totalKegiatanHarian = await prisma.kegiatan.count({ where: { id_users: getProfile(req).id, tanggal_input: new Date(getDateFormatYYMMDD()) } })
+        const getData = await prisma.kegiatan.findMany({
+            where: {
+                id_users: getProfile(req).id,
+                tanggal_input: new Date(getDateFormatYYMMDD())
+            }, take: 3, orderBy: { id: 'desc' }
+        })
+        const sekarang = new Date()
+        sekarang.setDate(sekarang.getDate() - 7)
+        const satuBulanTerakhir = new Date();
+        satuBulanTerakhir.setMonth(satuBulanTerakhir.getMonth() - 1);
+        const satuMinggu = await prisma.kegiatan.count({
+            where: {
+                id_users: getProfile(req).id,
+                tanggal_input: {
+                    gte: sekarang,
+                    lte: new Date()
+                }
+            }
+        })
+        const satuBulan = await prisma.kegiatan.count({
+            where: {
+                id_users: getProfile(req).id,
+                tanggal_input: {
+                    gte: satuBulanTerakhir,
+                    lte: new Date()
+                }
+            }
+        })
+        const totalKeseluruhan = await prisma.kegiatan.count({ where: { id_users: getProfile(req).id } })
+        const sudahDikerjakan = await prisma.kegiatan.count({ where: { id_users: getProfile(req).id, tercapai: true } })
+        const belumDikerjakan = await prisma.kegiatan.count({ where: { id_users: getProfile(req).id, tercapai: false } })
         return res.render('./template', {
             page: 'page/index',
-            profile: getProfile(req)
+            profile: getProfile(req),
+            totalKegiatanHarian: totalKegiatanHarian,
+            totalKegiatanMingguan: satuMinggu,
+            totalKegiatanBulanan: satuBulan,
+            totalKeseluruhan: totalKeseluruhan,
+            sudahDikerjakan: sudahDikerjakan,
+            belumDikerjakan: belumDikerjakan,
+            data: getData,
+            moment: moment,
         })
 
     } catch (error) {
@@ -15,10 +56,25 @@ exports.Index = async (req, res) => {
     }
 }
 
-exports.tableKegiatan = async (req, res) => {
+exports.tableKegiatanHarian = async (req, res) => {
     try {
 
         const getData = await prisma.kegiatan.findMany({ where: { id_users: getProfile(req).id, tanggal_input: new Date(getDateFormatYYMMDD()) } })
+        return res.render('./template', {
+            page: 'page/tabel_kegiatan_harian',
+            data: getData,
+            moment: moment,
+            profile: getProfile(req)
+        })
+    } catch (error) {
+        return res.render('./500')
+    }
+}
+
+exports.tableKegiatan = async (req, res) => {
+    try {
+
+        const getData = await prisma.kegiatan.findMany({ where: { id_users: getProfile(req).id }, orderBy: [{ id: 'desc' }] })
         return res.render('./template', {
             page: 'page/tabel_kegiatan',
             data: getData,
@@ -39,11 +95,13 @@ exports.formKegiatan = async (req, res) => {
                 tanggal_input: new Date(getDateFormatYYMMDD())
             }, take: 3, orderBy: { id: 'desc' }
         })
+        const totalKegiatan = await prisma.kegiatan.count({ where: { id_users: getProfile(req).id, tanggal_input: new Date(getDateFormatYYMMDD()) } })
         return res.render('./template', {
             page: 'page/input_kegiatan',
             data: getData,
             moment: moment,
-            profile: getProfile(req)
+            profile: getProfile(req),
+            totalKegiatan: totalKegiatan
         })
 
     } catch (error) {

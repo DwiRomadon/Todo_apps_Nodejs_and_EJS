@@ -1,0 +1,113 @@
+<div class="page-header">
+    <h1 class="page-title">Data Kegiatan Hari Ini</h1>
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kegiatan Hari Ini</li>
+        </ol>
+    </div>
+</div>
+<div class="row row-sm">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Semua Kegiatan Kamu Hari Ini</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example3" class="table table-bordered text-nowrap border-bottom">
+                        <thead>
+                            <tr>
+                                <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0">Kegiatan</th>
+                                <th class="border-bottom-0">Keterangan</th>
+                                <th class="border-bottom-0">Sudah Dilakukan</th>
+                                <th class="border-bottom-0">Tanggal</th>
+                                <th class="border-bottom-0">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% data.forEach(function (datas, i){ %>
+                                <tr>
+                                    <td>
+                                        <%= i+1 %>
+                                    </td>
+                                    <td>
+                                        <%= datas.nama_kegiatan %>
+                                    </td>
+                                    <td>
+                                        <%= datas.keterangan===null ? '-' : datas.keterangan%>
+                                    </td>
+                                    <td>
+                                        <% if(datas.tercapai===true){%>
+                                            <span class="badge bg-success badge-sm  me-1 mb-1 mt-1">Sudah
+                                                Dikerjakan</span>
+                                            <% }else{ %>
+                                                <span class="badge bg-danger badge-sm  me-1 mb-1 mt-1">Belum
+                                                    Dikerjakan</span>
+                                                <% } %>
+                                    </td>
+                                    <td>
+                                        <%= moment(datas.tanggal_input).format('DD MMMM, YYYY') %>
+                                    </td>
+                                    <td>
+                                        <%- datas.tercapai===false ? `<a
+                                            href="/update-status-kegiatan/${datas.id}/${true}"
+                                            class="btn btn-success btn-pill">Sudah Dikerjakan? </a>` :
+                                            `<a href="/update-status-kegiatan/${datas.id}/${false}"
+                                                class="btn btn-danger btn-pill" data-bs-effect="effect-flip-vertical"
+                                                data-bs-toggle="modal">Belum Dikerjakan ?</a>` %>
+                                            <a href="#modaldemo8" class="btn btn-warning btn-pill"
+                                                data-bs-target="#myModal<%=datas.id%>"
+                                                data-bs-effect="effect-flip-vertical" data-bs-toggle="modal">Edit
+                                                Kegiatan</a>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="myModal<%= datas.id %>">
+                                    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                        <form action="form-kegiatan/<%= datas.id %>" method="post">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h6 class="modal-title">Update Kegiatan</h6><button
+                                                        aria-label="Close" class="btn-close" type="button"
+                                                        data-bs-dismiss="modal"><span
+                                                            aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class=" row mb-4">
+                                                        <label for="inputName" class="col-md-3 form-label">Nama
+                                                            Kegiatan</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" name="nama_kegiatan"
+                                                                placeholder="Masukan nama kegiatan hari ini"
+                                                                autocomplete="username"
+                                                                value="<%= datas.nama_kegiatan %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-4">
+                                                        <label for="inputName" class="col-md-3 form-label">Keterangan
+                                                            Kegiatan</label>
+                                                        <div class="col-md-9">
+                                                            <textarea class="form-control" name="keterangan"
+                                                                placeholder="Masukan keterangan kegiatan"><%= datas.keterangan %></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="submit">Simpan
+                                                        Perubahan</button>
+                                                    <button class="btn btn-light" data-bs-dismiss="modal"
+                                                        type="button">Close</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <% })%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
