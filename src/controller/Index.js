@@ -131,7 +131,7 @@ exports.updateStatusKegiatan = async (req, res) => {
     try {
         await prisma.kegiatan.update({ where: { id: Number(req.params.id) }, data: { tercapai: JSON.parse(req.params.status) } })
         res.writeHead(302, {
-            'Location': '/tabel-kegiatan',
+            'Location': '/tabel-kegiatan-harian',
 
         })
         res.end()
@@ -146,7 +146,7 @@ exports.updateKegiatan = async (req, res) => {
         const data = req.body
         await prisma.kegiatan.update({ where: { id: Number(req.params.id) }, data: data })
         res.writeHead(302, {
-            'Location': '/tabel-kegiatan',
+            'Location': '/tabel-kegiatan-harian',
 
         })
         res.end()
